@@ -1,6 +1,6 @@
 var trex,trex_running,obstacle,cactus1,cactus2,cactus3,cactus4,cactus5,cactus6,ground,inviground,score,trex_dead,ground_image,gameState,cloud,cloud_image,score,obstacleGroup,cloudGroup;
 
-localStorage["highScore"];
+localStorage["highScore"] = 0;
 
 var gameover,txt_gameover,restart,restart_button;
 
