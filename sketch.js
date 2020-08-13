@@ -1,4 +1,5 @@
 var trex,trex_running,obstacle,cactus1,cactus2,cactus3,cactus4,cactus5,cactus6,ground,inviground,score,trex_dead,ground_image,gameState,cloud,cloud_image,score,obstacleGroup,cloudGroup;
+var jump,dead,checkpoint;
 
 localStorage["highScore"] = 0;
 
@@ -21,7 +22,10 @@ function preload(){
   restart_button = loadImage("restart.png");
   
   trex_dead = loadImage("trex_collided.png");
-
+  
+  jump = loadSound("jump.mp3");
+  dead = loadSound("die.mp3");
+  checkpoint = loadSound("checkPoint.mp3");
 }
 
 function setup() {
@@ -64,8 +68,13 @@ function draw() {
   
   if(gamestate === "play"){
     
+    if(score % 100 === 0 && score > 1){
+      checkpoint.play();
+    }
+    
     if(keyDown("space") && trex.y > 130){
      trex.velocityY = -15;
+     jump.play();
     }
     trex.velocityY = trex.velocityY + 0.9;
      
@@ -97,6 +106,8 @@ function draw() {
     
     restart.visible = true;
     gameover.visible = true;
+    
+    dead = loadSound("die.mp3");
     
     if(mousePressedOver(restart)){
       reset();
